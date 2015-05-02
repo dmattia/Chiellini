@@ -1,5 +1,7 @@
-David Mattia
+Chiellini
 
-I worked on this project alone.
+A pacman variant
 
-To see all the views, I would recommend setting the eigth high score very low so that you can see what happens when a new high score is reached.
+Created as my first semester final project as a sophomore
+
+To run: clone the repository. run make. run the executable created.
