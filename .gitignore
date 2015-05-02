@@ -1,3 +1,6 @@
+#executable
+chiellini
+
 # Object files
 *.o
 *.ko

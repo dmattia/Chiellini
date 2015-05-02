@@ -1,0 +1,86 @@
+How it works from the user's perspective:
+	The program opens with a menu.  The options are to play a game, view the highscores, read how to play, or quit. Starting with the easiest to explain, tapping quit will exit the program.
+	Tapping "How To Play" opens a view that explains the absolute basics of gameplay. Hitting the back button returns to the homescreen.
+	Tapping "High Scores" opens a view that shows the current top scores.  If a new high score is achieved within the current session, this view will update to reflect the new high score.  Exiting the program does not affect the highscores.
+	Tapping "Play Now!" or "Chiellini" will load a game of
+Chiellini/Pacman. The game loads and music begins.  When the user taps an
+arrow key, the game begins.  The Pacman looking character moves around based
+on the user's clicks of the arrow keys in their respective directions.  The
+four ghosts come out after a time and move in various algorithms never fully
+revealed to the user.  If the ghosts catch the user's character, a life is
+lost.  The life count is shown in the bottom left corner.  After a death or
+after the game is won, the user's character returns to its starting position
+as do the ghosts.  Each spot on the field the character has visited will be
+blank, while all unvisited spots will show either a yellow circle or a red
+card.  Yellow circles simply disappear after the character visits that spot,
+but red cards turn the ghosts blue and allow the character to briefly chase
+the ghosts.  The ghosts slow down to half speed during this time.  If the
+character catches a ghost during the time it is blue, the ghost will return to
+its starting position and pacman will get a score boost. Each consecutive
+ghost eaten results in a larger point boost.  The score is shown during
+gameplay at the top of the screen.   "Winning" occurs when the character has
+visited all positions on the board that started out with a circle.  After
+winning, the board resets and the game continues.  After all lives are lost,
+one of two things happens.  Either no new high score has been acheived and the
+game returns to the menu, or a new high score has been earned and a enter name
+screen comes up.  The user enters their name and hits enter when complete.
+After entering the name, the main menu comes back up.
+
+How it works from an internal perspective:
+The main function opens a window with the title "Chiellini."  It then calls
+mainMenu() which draws boxes and returns which one is clicked.  Based on which
+value was returned, one of three views is called. These views are created by
+playPacman(), highScores(), or aboutSection().
+	aboutSection() draws a background.  It then draws two boxes, one to
+hold text and one for the back button.  It reads in text from howtoplay.txt
+and displays it on the screen.  It then waits until the user clicks on the
+back button and returns to the main menu.
+	highScores() reads in the names and scores from highscores.txt and
+displays them on the screen.  It then waits until the user clicks on the back
+button and returns to the main menu.
+	playPacman() starts by declaring quite a few variables.  canDie being
+set to 0 means that pacman cannot die from ghosts, and 1 means pacman can die.
+It creates the board, sets all the variables for the game, and creates the
+four ghosts.  It then starts timers to release the ghosts. The game then
+starts and pacman makes a move. This is done by clearing the screen, drawing
+the remaining lives with drawLives(), drawing the board with drawBoard(),
+showing the updated scores with drawScore(), drawing the ghosts with
+drawGhosts(), and drawing the character with drawPacMan().  After each step,
+pacman's position and the position of each ghost is updated.  Pacman's next
+position is found by updatePosition(). The ghosts' positions are updated by
+moveGhosts().  The program then checks if the game has been won or if the
+character died.  If it died, one life is subtracted and the board is reset
+with reset(). If the game is won, setupBoard() is called and then reset().
+	updatePosition() checks if the next direction the user has clicked is
+possible to move in.  If the user can move in that direction, pacman does. If
+it can't, it continues in its current direction.  If pacman is at the tunnel,
+it switches to the other side.
+	moveGhosts() controls the algorithms for each ghosts movement.  It
+uses the timer and calls various movement functions for each ghost based on
+how far into a fourteen second cycle the time is.  The various movements are
+controlled by updateGhost() and updateRandomGhost().
+	setupBoard() reades from board.txt to set up the initial board.
+	reset() moves pacman back to his starting position as well as all the
+ghosts. It then redraws everything.  It then waits for a few seconds for the
+music to play and to give the user a break.
+	updateGhost() takes in a target position for the ghost to aim for.
+This can be anything, and is either pacman's position or a corner depending on
+which algorithm the ghost has at that time.  The algorithm starts by ranking
+each direction against each other based on how far away in the x and y
+direction the ghost is from the target. It then moves in the top ranked
+direction that is able to be moved in and wouldn't be moving opposite to its
+last move.
+	updateRandomGhost() randomly picks a direction, checks if it wouldn't
+be going backwords and is a viable move, and moves in that direction if both
+work out.  Otherwise, a different random number is picked. This continues
+until the ghost has moved.
+
+How I verified its output:
+I have played through the game quite a few times (all high scores are real). I
+have removed almost every bug I found, but occasionally the character will not
+respond to clicks if the buttons are mashed too quickly.  I have experimented
+with finding new high scores, getting low scores, advancing levels, navigating
+the menus in various orders, eating ghosts, and dying quickly.  There are no
+other bugs I currently see, however there may be a few I didn't
+catch.  I have also let a few other classmates play and
+have taken their input into account.

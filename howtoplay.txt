@@ -1,0 +1,11 @@
+How To Play
+This is a variant of the traditional Pacman game called Chiellini.  In this
+game, the ghosts of Luis Suarez attempt to find you and bite you.  Your only
+chance at survival is finding the red cards in the corners.
+
+Use the arrow keys to move around. Your goal is to avoid being bitten while
+visiting the entire field.  Spots not yet visited are marked with dots.
+
+You have three lives.  When you die, you lose one life and all ghost positions
+are reset as well as your position.  Be warned that mashing buttons upon death
+can cause considerable lag in your next life.
