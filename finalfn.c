@@ -666,8 +666,8 @@ void setupBoard(int board[][SECTIONS]) {
 	char line[256];
 	for(i=0;i<20;i++) {
 		for(j=0;j<20;j++) {
-			fscanf(boardInit, "%c ", &board[j][i]);
-			board[j][i] = board[j][i] - 48;
+			fscanf(boardInit, "%d ", &board[j][i]);
+			board[j][i] = board[j][i];
 		}
 	}
 	board[0][0]=1;
