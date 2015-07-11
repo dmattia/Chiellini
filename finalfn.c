@@ -382,7 +382,11 @@ int playPacman() {
 	int board[SECTIONS][SECTIONS] = {0};
 	ghost Suarez,Randy,Luis,Digger, Ghosts[4] = {Suarez, Randy, Luis, Digger};
 
-	system("aplay sounds/pacman_beginning.wav &");
+	#ifdef __APPLE__
+		system("afplay sounds/pacman_beginning.wav &");
+	#elif
+		system("aplay sounds/pacman_beginning.wav &");
+	#endif
 
 	gfx_clear();
 	setupBoard(board);	
@@ -411,7 +415,11 @@ int playPacman() {
 
 		// Plays chomp.wav every second
 		if(elapsed>previousElapsed) {
-			system("aplay sounds/pacman_chomp.wav &");
+			#ifdef __APPLE__
+				system("afplay sounds/pacman_chomp.wav &");
+			#elif
+				system("afplay sounds/pacman_chomp.wav &");
+			#endif
 		}		
 
 		// Prepare board
@@ -427,7 +435,11 @@ int playPacman() {
 			if(poweredUpElapsed>=5 && board[x][y]!=3) {
 				// if hit ghost without powerup
 				lives--;
-				system("aplay sounds/pacman_death.wav &");
+				#ifdef __APPLE__
+					system("afplay sounds/pacman_death.wav &");
+				#elif
+					system("aplay sounds/pacman_death.wav &");
+				#endif
 				reset(Ghosts,&x,&y,&direction,lives,board);
 				time(&start_t);
 			} else {
@@ -437,7 +449,11 @@ int playPacman() {
 					if(Ghosts[i].x==x && Ghosts[i].y==y) {
 						Ghosts[i].x = 9;
 						Ghosts[i].y = 9;
-						system("aplay sounds/pacman_eatghost.wav &");
+						#ifdef __APPLE__
+							system("afplay sounds/pacman_eatghost.wav &");
+						#elif
+							system("aplay sounds/pacman_eatghost.wav &");
+						#endif
 						score+=100*(pow(2,ghostsEaten++));
 					}	
 				}
@@ -468,7 +484,11 @@ int playPacman() {
 		// Check status for winning
 		if (isWon(board)) {
 			setupBoard(board);
-			system("aplay sounds/pacman_intermission.wav &");
+			#ifdef __APPLE__
+				system("afplay sounds/pacman_intermission.wav &");
+			#elif
+				system("aplay sounds/pacman_intermission.wav &");
+			#endif
 			reset(Ghosts,&x,&y,&direction,lives,board);
 		}
 
@@ -476,7 +496,11 @@ int playPacman() {
 			if(poweredUpElapsed>=5 && board[x][y]!=3) {
 				// Met a ghost without powerup
 				lives--;
-				system("aplay sounds/pacman_death.wav &");
+				#ifdef __APPLE__
+					system("afplay sounds/pacman_death.wav &");
+				#elif
+					system("aplay sounds/pacman_death.wav &");
+				#endif
 				reset(Ghosts,&x,&y,&direction,lives,board);
 				time(&start_t);
 			} else {
@@ -486,7 +510,11 @@ int playPacman() {
 						// sends all eaten ghosts to (9,9)
 						Ghosts[i].x = 9;
 						Ghosts[i].y = 9;
-						system("aplay sounds/pacman_eatghost.wav &");
+						#ifdef __APPLE__
+							system("afplay sounds/pacman_eatghost.wav &");
+						#elif
+							system("aplay sounds/pacman_eatghost.wav &");
+						#endif
 						score+=100*(pow(2,ghostsEaten++));
 					}
 				}
