@@ -6,13 +6,6 @@
 #define WIDTH 800
 #define HEIGHT WIDTH
 
-enum Menu_Selection {
-	play_game = 1,
-	high_scores = 2,
-	quit = 3,
-	about = 4
-};
-
 int main() {
 	int score;
 	enum Menu_Selection selection;

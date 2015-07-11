@@ -10,6 +10,13 @@ typedef struct {
 	int dir;
 } ghost;
 
+enum Menu_Selection {
+        play_game = 1,
+        high_scores = 2,
+        quit = 3,
+        about = 4
+};
+
 // Makes clickable rectangular boxes
 typedef struct {
 	int upperleftX;
@@ -34,7 +41,7 @@ void moveGhosts(ghost[],int,int,int,int,int[][SECTIONS]);
 void drawLives(int);
 void reset(ghost[],int*,int*,char*,int,int[][SECTIONS]);
 int playPacman();
-int mainMenu();
+enum Menu_Selection mainMenu();
 Box drawBox(int,int,int,int);
 int isInBox(Box,int,int);
 void highScores();

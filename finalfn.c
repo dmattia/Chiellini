@@ -72,7 +72,7 @@ void aboutSection() {
 }
 
 // Displays options to play game, open high scores, or exit
-int mainMenu() {
+enum Menu_Selection mainMenu() {
 	char c = 0;
 	int x=0,y=0,i;	
 	Box titleBox, playNowBox, highScoresBox, quitBox, aboutBox;
@@ -107,16 +107,16 @@ int mainMenu() {
 
 		if(c==1 && (isInBox(playNowBox,x,y) || isInBox(titleBox,x,y))) {
 			// Play a game of pacman
-			return 1; 
+			return play_game; 
 		} else if(c==1 && isInBox(highScoresBox,x,y)) {
 			// Show high scores
-			return 2;
+			return high_scores;
 		} else if(c==1 && isInBox(aboutBox,x,y)) {
 			// Show how to play section
-			return 4;
+			return about;
 		} else if(c==1 && isInBox(quitBox,x,y)) {
 			// Quit
-			return 3;
+			return quit;
 		}
 	} 
 }
